@@ -63,6 +63,13 @@ void clientCode () {
     context->request();
     context->setState(stateB);
     context->request();
+
+    /*
+        Output->
+
+            Product currently in State A
+            Product currently in State B
+    */
 }
 
 
