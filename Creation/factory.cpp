@@ -1,3 +1,4 @@
+// simple factory
 #include <iostream>
 #include <string>
 
@@ -24,32 +25,26 @@ public:
 
 class VehicleFactory {
 public:
-    virtual Vehicle* createVehicle() = 0;
-};
-
-class TwoWheelerFactory: public VehicleFactory {
-public:
-    Vehicle* createVehicle() override {
-        Vehicle* twoWheeler = new TwoWheeler();
-        return twoWheeler;
-    }
-};
-
-class FourWheelerFactory: public VehicleFactory {
-public:
-    Vehicle* createVehicle() override {
-        Vehicle* fourWheeler = new FourWheeler();
-        return fourWheeler;
+    Vehicle* createVehicle(int wheel) {
+        if (wheel == 2) {
+            return new TwoWheeler();
+        }
+        else if (wheel == 4) {
+            return new FourWheeler();
+        }
+        else {
+            cout << "Wrong input" << endl;
+            return nullptr;
+        }
     }
 };
 
 void client() {
-    VehicleFactory* factory = new TwoWheelerFactory();
-    Vehicle* vehicle = factory->createVehicle();
-    vehicle->getDescription();
-    factory = new FourWheelerFactory();
-    vehicle = factory->createVehicle();
-    vehicle->getDescription();
+    VehicleFactory* factory = new VehicleFactory();
+    Vehicle* twoWheeler = factory->createVehicle(2);
+    twoWheeler->getDescription();
+    Vehicle* fourWheeler = factory->createVehicle(4);
+    fourWheeler->getDescription();
 }
 
 int main() {

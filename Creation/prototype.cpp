@@ -13,7 +13,6 @@ public:
 class CirclePrototype : public PrototypeInterface {
 private:
     int radius;
-    string id;
 
 public:
     CirclePrototype(int radius) {
@@ -27,6 +26,7 @@ public:
 
     PrototypeInterface* clone() override {
         PrototypeInterface* clonedCircle = new CirclePrototype(this->radius);
+        return clonedCircle;
     }
 
 };
